@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="page-heading">
+    <div>
+        <span class="eyebrow">OVERVIEW</span>
+        <h1>Dashboard</h1>
+        <p>Selamat datang di sistem manajemen inventaris StockFlow.</p>
+    </div>
+</div>
+
+<div class="welcome-card">
+    <div>
+        <span class="welcome-tag">STOCKFLOW MANAGEMENT</span>
+        <h2>Manage your inventory efficiently.</h2>
+        <p>Pantau dan kelola data inventaris barang dalam satu sistem.</p>
+        <a href="/barang" class="btn btn-light">Kelola Barang →</a>
+    </div>
+    <div class="welcome-decoration">SF</div>
+</div>
+
+<div class="section-heading">
+    <h2>Menu Pengelolaan</h2>
+    <p>Pilih modul yang ingin dikelola.</p>
+</div>
+
+<div class="menu-grid">
+    <a href="/barang" class="menu-card">
+        <div class="menu-icon">▤</div>
+        <h3>Data Barang</h3>
+        <p>Kelola informasi dan stok barang.</p>
+        <span>Buka modul →</span>
+    </a>
+
+    <a href="/supplier" class="menu-card">
+        <div class="menu-icon">♙</div>
+        <h3>Supplier</h3>
+        <p>Kelola informasi pemasok barang.</p>
+        <span>Buka modul →</span>
+    </a>
+
+    <a href="/barang-masuk" class="menu-card">
+        <div class="menu-icon">↓</div>
+        <h3>Barang Masuk</h3>
+        <p>Catat transaksi barang masuk.</p>
+        <span>Buka modul →</span>
+    </a>
+
+    <a href="/barang-keluar" class="menu-card">
+        <div class="menu-icon">↑</div>
+        <h3>Barang Keluar</h3>
+        <p>Catat transaksi barang keluar.</p>
+        <span>Buka modul →</span>
+    </a>
+</div>
+
+<%- include('partials/footer') %>
