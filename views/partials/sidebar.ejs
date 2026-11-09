@@ -1,0 +1,52 @@
+
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon">
+            <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+
+        <div class="brand-text">
+            <h2>StockFlow</h2>
+            <span>Inventory Management</span>
+        </div>
+    </div>
+
+    <div class="sidebar-label">MENU UTAMA</div>
+
+    <nav class="sidebar-nav">
+        <a href="/" class="nav-link <%= currentPage === 'dashboard' ? 'active' : '' %>">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="/barang" class="nav-link <%= currentPage === 'barang' ? 'active' : '' %>">
+            <i class="fa-solid fa-box"></i>
+            <span>Data Barang</span>
+        </a>
+
+        <a href="/supplier" class="nav-link <%= currentPage === 'supplier' ? 'active' : '' %>">
+            <i class="fa-solid fa-truck-field"></i>
+            <span>Data Supplier</span>
+        </a>
+
+        <a href="/barang-masuk" class="nav-link <%= currentPage === 'masuk' ? 'active' : '' %>">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <span>Barang Masuk</span>
+        </a>
+
+        <a href="/barang-keluar" class="nav-link <%= currentPage === 'keluar' ? 'active' : '' %>">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Barang Keluar</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="sidebar-info">
+            <i class="fa-solid fa-circle-info"></i>
+            <div>
+                <strong>StockFlow System</strong>
+                <span>Inventory made simple.</span>
+            </div>
+        </div>
+    </div>
+</aside>

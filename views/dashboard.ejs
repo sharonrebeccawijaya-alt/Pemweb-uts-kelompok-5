@@ -1,57 +1,127 @@
-<%- include('partials/header') %>
-<%- include('partials/navbar') %>
 
-<div class="page-heading">
-    <div>
-        <span class="eyebrow">OVERVIEW</span>
-        <h1>Dashboard</h1>
-        <p>Selamat datang di sistem manajemen inventaris StockFlow.</p>
-    </div>
-</div>
+<%- include('./partials/header') %>
+<%- include('./partials/sidebar', { currentPage: 'dashboard' }) %>
 
-<div class="welcome-card">
-    <div>
-        <span class="welcome-tag">STOCKFLOW MANAGEMENT</span>
-        <h2>Manage your inventory efficiently.</h2>
-        <p>Pantau dan kelola data inventaris barang dalam satu sistem.</p>
-        <a href="/barang" class="btn btn-light">Kelola Barang →</a>
-    </div>
-    <div class="welcome-decoration">SF</div>
-</div>
+<main class="main-content">
+    <%- include('./partials/navbar') %>
 
-<div class="section-heading">
-    <h2>Menu Pengelolaan</h2>
-    <p>Pilih modul yang ingin dikelola.</p>
-</div>
+    <section class="page-content">
+        <div class="page-heading">
+            <div>
+                <span class="eyebrow">OVERVIEW</span>
+                <h1>Dashboard</h1>
+                <p>Selamat datang di StockFlow Inventory Management System.</p>
+            </div>
 
-<div class="menu-grid">
-    <a href="/barang" class="menu-card">
-        <div class="menu-icon">▤</div>
-        <h3>Data Barang</h3>
-        <p>Kelola informasi dan stok barang.</p>
-        <span>Buka modul →</span>
-    </a>
+            <div class="date-display">
+                <i class="fa-regular fa-calendar"></i>
+                <%= new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }) %>
+            </div>
+        </div>
 
-    <a href="/supplier" class="menu-card">
-        <div class="menu-icon">♙</div>
-        <h3>Supplier</h3>
-        <p>Kelola informasi pemasok barang.</p>
-        <span>Buka modul →</span>
-    </a>
+        <div class="welcome-card">
+            <div>
+                <span>INVENTORY MANAGEMENT</span>
+                <h2>Manage your inventory smarter.</h2>
+                <p>Pantau barang, supplier, serta aktivitas inventaris dalam satu tempat.</p>
+                <a href="/barang" class="btn btn-light">
+                    Lihat Data Barang
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
 
-    <a href="/barang-masuk" class="menu-card">
-        <div class="menu-icon">↓</div>
-        <h3>Barang Masuk</h3>
-        <p>Catat transaksi barang masuk.</p>
-        <span>Buka modul →</span>
-    </a>
+            <div class="welcome-illustration">
+                <i class="fa-solid fa-boxes-stacked"></i>
+            </div>
+        </div>
 
-    <a href="/barang-keluar" class="menu-card">
-        <div class="menu-icon">↑</div>
-        <h3>Barang Keluar</h3>
-        <p>Catat transaksi barang keluar.</p>
-        <span>Buka modul →</span>
-    </a>
-</div>
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+                <div>
+                    <span>Total Barang</span>
+                    <h2><%= totalBarang ?? 0 %></h2>
+                    <small>Barang terdaftar</small>
+                </div>
+            </div>
 
-<%- include('partials/footer') %>
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-truck-field"></i>
+                </div>
+                <div>
+                    <span>Total Supplier</span>
+                    <h2><%= totalSupplier ?? 0 %></h2>
+                    <small>Supplier terdaftar</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+                <div>
+                    <span>Barang Masuk</span>
+                    <h2><%= totalMasuk ?? 0 %></h2>
+                    <small>Total unit masuk</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </div>
+                <div>
+                    <span>Barang Keluar</span>
+                    <h2><%= totalKeluar ?? 0 %></h2>
+                    <small>Total unit keluar</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card quick-access">
+            <div class="card-heading">
+                <div>
+                    <h3>Akses Cepat</h3>
+                    <p>Pilih menu untuk mengelola inventaris.</p>
+                </div>
+            </div>
+
+            <div class="quick-grid">
+                <a href="/barang" class="quick-item">
+                    <i class="fa-solid fa-box"></i>
+                    <strong>Data Barang</strong>
+                    <span>Kelola inventaris</span>
+                </a>
+
+                <a href="/supplier" class="quick-item">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <strong>Data Supplier</strong>
+                    <span>Kelola pemasok</span>
+                </a>
+
+                <a href="/barang-masuk" class="quick-item">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <strong>Barang Masuk</strong>
+                    <span>Catat stok masuk</span>
+                </a>
+
+                <a href="/barang-keluar" class="quick-item">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <strong>Barang Keluar</strong>
+                    <span>Catat stok keluar</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <%- include('./partials/footer') %>
+</main>
+</body>
+</html>
