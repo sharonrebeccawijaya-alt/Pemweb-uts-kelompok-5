@@ -1,0 +1,107 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-heading">
+    <div>
+        <span class="eyebrow">INVENTORY / MASTER DATA</span>
+        <h1>Data Barang</h1>
+        <p>Kelola seluruh informasi inventaris barang.</p>
+    </div>
+
+    <a href="/barang/tambah" class="btn btn-primary">
+        + Tambah Barang
+    </a>
+</div>
+
+<% if (success) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<% if (error) { %>
+    <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<div class="content-card">
+    <div class="card-heading">
+        <div>
+            <h2>Daftar Inventaris</h2>
+            <p>Informasi barang yang terdaftar dalam sistem.</p>
+        </div>
+
+        <span class="count-badge"><%= barang.length %> Barang</span>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Kode Barang</th>
+                    <th>Nama Barang</th>
+                    <th>Supplier</th>
+                    <th>Satuan</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if (barang.length === 0) { %>
+                    <tr>
+                        <td colspan="7" class="empty-state">
+                            <div class="empty-icon">▤</div>
+                            <strong>Belum ada data barang</strong>
+                            <p>Tambahkan barang pertama ke inventaris.</p>
+                        </td>
+                    </tr>
+                <% } %>
+
+                <% barang.forEach((item, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+
+                        <td>
+                            <span class="code-badge">
+                                <%= item.kode %>
+                            </span>
+                        </td>
+
+                        <td><strong><%= item.nama %></strong></td>
+
+                        <td><%= item.nama_supplier || '-' %></td>
+
+                        <td><%= item.satuan %></td>
+
+                        <td>
+                            <span class="stock-badge">
+                                <%= item.stok %>
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="action-group">
+                                <a
+                                    href="/barang/<%= item.id %>/edit"
+                                    class="btn btn-edit">
+                                    Edit
+                                </a>
+
+                                <form
+                                    action="/barang/<%= item.id %>/hapus"
+                                    method="POST"
+                                    onsubmit="return confirm('Yakin ingin menghapus barang ini?')">
+
+                                    <button type="submit" class="btn btn-delete">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

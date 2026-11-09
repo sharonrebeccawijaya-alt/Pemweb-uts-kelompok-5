@@ -1,0 +1,135 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="page-heading">
+    <div>
+        <span class="eyebrow">INVENTORY / MASTER DATA</span>
+
+        <h1><%= title %></h1>
+
+        <p>
+            Lengkapi informasi barang pada formulir berikut.
+        </p>
+    </div>
+
+    <a href="/barang" class="btn btn-secondary">
+        ← Kembali
+    </a>
+</div>
+
+<div class="content-card form-card">
+
+    <div class="card-heading">
+        <div>
+            <h2>Informasi Barang</h2>
+            <p>Field bertanda * wajib diisi.</p>
+        </div>
+    </div>
+
+    <% if (error) { %>
+        <div class="alert alert-error"><%= error %></div>
+    <% } %>
+
+    <form
+        action="<%= barang ? '/barang/' + barang.id + '/edit' : '/barang/tambah' %>"
+        method="POST">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label for="kode">Kode Barang *</label>
+
+                <input
+                    type="text"
+                    id="kode"
+                    name="kode"
+                    placeholder="Contoh: BRG001"
+                    value="<%= barang ? barang.kode : '' %>"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="nama">Nama Barang *</label>
+
+                <input
+                    type="text"
+                    id="nama"
+                    name="nama"
+                    placeholder="Masukkan nama barang"
+                    value="<%= barang ? barang.nama : '' %>"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="supplier_id">Supplier *</label>
+
+                <select id="supplier_id" name="supplier_id" required>
+                    <option value="">Pilih Supplier</option>
+
+                    <% suppliers.forEach(supplier => { %>
+                        <option
+                            value="<%= supplier.id %>"
+                            <%= barang && Number(barang.supplier_id) === supplier.id ? 'selected' : '' %>>
+
+                            <%= supplier.nama %>
+                        </option>
+                    <% }) %>
+                </select>
+
+                <% if (suppliers.length === 0) { %>
+                    <small class="input-help">
+                        Belum ada supplier. Tambahkan supplier terlebih dahulu.
+                    </small>
+                <% } %>
+            </div>
+
+            <div class="form-group">
+                <label for="satuan">Satuan *</label>
+
+                <select id="satuan" name="satuan" required>
+                    <option value="">Pilih Satuan</option>
+
+                    <% ['Pcs', 'Unit', 'Box', 'Pack', 'Kg', 'Liter', 'Meter'].forEach(s => { %>
+                        <option
+                            value="<%= s %>"
+                            <%= barang && barang.satuan === s ? 'selected' : '' %>>
+                            <%= s %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="stok">Stok Awal *</label>
+
+                <input
+                    type="number"
+                    id="stok"
+                    name="stok"
+                    min="0"
+                    step="1"
+                    placeholder="Masukkan jumlah stok"
+                    value="<%= barang ? barang.stok : 0 %>"
+                    required>
+
+                <small class="input-help">
+                    Gunakan bilangan bulat positif atau nol.
+                </small>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <a href="/barang" class="btn btn-secondary">
+                Batal
+            </a>
+
+            <button type="submit" class="btn btn-primary">
+                <%= barang ? 'Simpan Perubahan' : 'Tambah Barang' %>
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<%- include('../partials/footer') %>
