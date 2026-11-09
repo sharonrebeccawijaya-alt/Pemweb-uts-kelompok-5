@@ -6,6 +6,7 @@ const { testConnection } = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const masukRoutes = require('./routes/masukRoutes');
 
 // EJS configuration
 app.set('view engine', 'ejs');
@@ -38,7 +39,7 @@ app.get('/', async (req, res) => {
 app.use((req, res) => {
     res.status(404).send('Halaman tidak ditemukan.');
 });
-
+app.use('/barang-masuk', masukRoutes);
 // Server
 async function startServer() {
     try {
